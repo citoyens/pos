@@ -5,7 +5,6 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useNavigator } from "app/hooks/useNavigator";
-import { AmplitudeEvent, logEvent } from "core/common/utils/analytics";
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import { getModuleIcon } from "utils/module";
@@ -40,11 +39,6 @@ const ModuleSelectorCard: FunctionComponent<ModuleSelectorCardProps> = (
       }}
       onClick={() => {
         navigator.to(link);
-        logEvent(AmplitudeEvent.VisitPage, {
-          pageTitle: title,
-          pageId: moduleId,
-          pagelink: link,
-        });
       }}
     >
       <CardContent sx={{ display: "flex", gap: 2, pb: 1 }}>

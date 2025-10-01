@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
   Alert,
+  BrandsState,
   CitiesState,
   CompanyState,
   CountriesState,
@@ -70,6 +71,12 @@ export const globalSlice = createSlice({
     clearCompany: (state) => {
       state.company = defaultDataSingle as CompanyState;
     },
+    setBrands: (state, action: PayloadAction<BrandsState>) => {
+      state.brands = action.payload;
+    },
+    clearBrands: (state) => {
+      state.brands = defaultData as BrandsState;
+    },
   },
 });
 
@@ -92,6 +99,8 @@ export const {
   clearCities,
   setCountries,
   clearCountries,
+  setBrands,
+  clearBrands,
 } = globalSlice.actions;
 export const { reducer } = globalSlice;
 

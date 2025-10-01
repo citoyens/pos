@@ -6,7 +6,8 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import SecurityRoundedIcon from "@mui/icons-material/SecurityRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import KitchenOutlinedIcon from "@mui/icons-material/KitchenOutlined";
 
 export type Module = {
   moduleId: string;
@@ -126,7 +127,9 @@ export const getModuleIcon = (
     case "permissionsByRole":
       return <LockOpenOutlinedIcon fontSize="large" />;
     case "usersSchedule":
-      return <CalendarMonthOutlinedIcon fontSize="large" />
+      return <CalendarMonthOutlinedIcon fontSize="large" />;
+    case "kitchenSelector":
+      return <KitchenOutlinedIcon fontSize="large" />;
     default:
       return undefined;
   }

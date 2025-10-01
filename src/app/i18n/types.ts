@@ -1,5 +1,3 @@
-import { ContractType, WorkingDay } from "core/users/entities/User";
-
 export enum commons {
   SAVE = "commons.SAVE",
   LOADING = "commons.LOADING",
@@ -280,8 +278,6 @@ export type Locales = {
     | alertMessage
     | modulesLocale
     | shiftManager
-    | ContractType
-    | WorkingDay
     | retirementTypeLocale
     | retirementReasonLocale
     | roleManager

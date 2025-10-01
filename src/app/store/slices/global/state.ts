@@ -1,5 +1,6 @@
 import { AlertColor, SnackbarOrigin } from "@mui/material";
 import { StoreRequestError, StoreRequestStatus } from "app/store/types";
+import { BrandSlice } from "core/brands/entities/Brand";
 import { City } from "core/city/entities/City";
 import { Company } from "core/company/entities/Company";
 import { Country } from "core/country/entities/Country";
@@ -47,6 +48,12 @@ export interface CompanyState {
   error: StoreRequestError;
 }
 
+export interface BrandsState {
+  data: BrandSlice[];
+  status: StoreRequestStatus;
+  error: StoreRequestError;
+}
+
 export interface GlobalState {
   alert: Alert;
   alerts: Alert[];
@@ -56,6 +63,7 @@ export interface GlobalState {
   company: CompanyState;
   countries: CountriesState;
   cities: CitiesState;
+  brands: BrandsState;
   canSearchOnTopBar: boolean;
   textSearchOnTopBar: string;
 }
@@ -78,6 +86,7 @@ export const initialState: GlobalState = {
   cities: defaultData as CitiesState,
   countries: defaultData as CountriesState,
   company: defaultDataSingle as CompanyState,
+  brands: defaultData as BrandsState,
   title: null,
   canSearchOnTopBar: false,
   textSearchOnTopBar: "",

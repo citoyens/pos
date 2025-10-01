@@ -1,5 +1,4 @@
 import initI18n from "app/i18n";
-import { initAnalytics } from "core/common/utils/analytics";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -10,7 +9,6 @@ const root = ReactDOM.createRoot(
 );
 
 initI18n();
-initAnalytics();
 
 root.render(
   <React.StrictMode>

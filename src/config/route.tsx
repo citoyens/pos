@@ -1,9 +1,6 @@
 import ModuleSelectorPage from "app/pages/ModuleSelector";
-import ModuleUsers from "app/pages/Users";
-import ModuleShifts from "app/pages/Shifts";
-import ModuleRoles from "app/pages/Roles";
 import { TypeOfRole as Role, TypeOfRole } from "utils/role";
-import UserSchedulePage from "app/pages/Users/Schedule";
+import KitchenSelector from "app/pages/KitchenSelector";
 
 export interface CustomRoute {
   path: string;
@@ -40,17 +37,7 @@ export const routeConfig: CustomRoute[] = [
     ],
   },
   {
-    path: "users",
-    element: <ModuleUsers />,
-    childrens: [{ path: "schedule", element: <UserSchedulePage /> }],
-  },
-  {
-    path: "access",
-    element: <ModuleRoles />,
-  },
-  {
-    path: "shifts",
-    element: <ModuleShifts />,
-    roles: rolesToApproveOvertime,
+    path: "kitchen-selector",
+    element: <KitchenSelector />,
   },
 ];

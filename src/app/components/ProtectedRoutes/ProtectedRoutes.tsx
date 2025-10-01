@@ -3,7 +3,6 @@ import { useAppSelector } from "app/hooks/useAppSelector";
 import { useNavigator } from "app/hooks/useNavigator";
 import { commons } from "app/i18n/types";
 import { getSession, getUser } from "app/store/slices/session/thunks";
-import { setUserId } from "core/common/utils/analytics";
 import { t } from "i18next";
 import React, { useEffect } from "react";
 import { useMount } from "react-use";
@@ -32,12 +31,6 @@ const ProtectedRoutes = (props: ProtectedRoute) => {
     dispatch(getUser());
     dispatch(getSession());
   });
-
-  useEffect(() => {
-    if (user && sessionStatus === "succeeded") {
-      setUserId(user.profile.identification);
-    }
-  }, [user, sessionStatus]);
 
   return (
     <>

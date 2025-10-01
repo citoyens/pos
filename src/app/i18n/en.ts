@@ -1,5 +1,4 @@
 /* eslint-disable no-template-curly-in-string */
-import { ContractType, WorkingDay } from "core/users/entities/User";
 import {
   Locales,
   commons,
@@ -147,14 +146,6 @@ export const enLocale: Locales = {
   [commons.NOVEMBER]: "November",
   [commons.DECEMBER]: "December",
   [commons.SELECT_LOCATIONS]: "Select the location",
-
-  [ContractType.DIRECT]: "Direct",
-  [ContractType.INDIRECT]: "Indirect",
-  [ContractType.EXTERNAL]: "External",
-
-  [WorkingDay.FULL]: "Full-time",
-  [WorkingDay.PARTIAL]: "Part-time",
-  [WorkingDay.WEEKEND]: "Weekend",
 
   [roleManager.TITLE]: "Role Manager",
   [roleManager.CODE_ALREADY_EXISTS]: "The code already exists",

@@ -18,6 +18,7 @@ export interface AppConfig {
   kitchenDisplay: ModuleConfig;
   bistroKeeper: ModuleConfig;
   avatar: ModuleConfig;
+  foodologyPos: ModuleConfig;
 }
 
 const appConfig: AppConfig = {
@@ -33,6 +34,10 @@ const appConfig: AppConfig = {
   avatar: {
     url: process.env.REACT_APP_AVATAR_URL ?? "",
     apiBaseUrl: process.env.REACT_APP_AVATAR_API_BASE_URL ?? "",
+  },
+  foodologyPos: {
+    url: "",
+    apiBaseUrl: process.env.REACT_APP_FOODOLOGY_POS_API_BASE_URL ?? "",
   },
 };
 

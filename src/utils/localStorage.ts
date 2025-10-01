@@ -6,6 +6,9 @@ import {
 export enum LocalStorageItemExtra {
   remoteConfig = "remoteConfig",
   filtersConfig = "filtersConfig",
+  selectedStore = "selectedStore",
+  selectedKitchen = "selectedKitchen",
+  selectedTable = "selectedTable",
 }
 
 export type LocalStorageItem = `${

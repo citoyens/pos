@@ -17,6 +17,7 @@ import { useAllCities } from "app/hooks/useAllCities";
 import { useTranslation } from "react-i18next";
 import textToSpeech from "utils/textToSpeech";
 import { useCompany } from "app/hooks/useCompany";
+import { useAllBrands } from "app/hooks/useAllBrands";
 
 interface AppLayoutProps {}
 
@@ -26,6 +27,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = () => {
   const allCountries = useAllCountries();
   const allKitchens = useAllKitchens();
   const allCities = useAllCities();
+  const allBrands = useAllBrands();
   const company = useCompany();
 
   const menuOpen = useAppSelector((state) => state.menu.open);
@@ -58,6 +60,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = () => {
     allCountries.get();
     allKitchens.get();
     allCities.get();
+    allBrands.get();
   });
 
   useEffect(() => {
