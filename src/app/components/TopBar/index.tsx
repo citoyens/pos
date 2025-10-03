@@ -1,6 +1,6 @@
 import { KOSEnvironment, KOSTopbar } from "@foodology-co/alejandria";
-import { useAppDispatch } from "app/hooks/useAppDispatch";
-import { useAppSelector } from "app/hooks/useAppSelector";
+import { useAppDispatch } from "app/components/PageHeader/hooks/useAppDispatch";
+import { useAppSelector } from "app/components/PageHeader/hooks/useAppSelector";
 import { toggleMenu } from "app/store/slices/menu";
 import appConfig from "config/app";
 import React from "react";

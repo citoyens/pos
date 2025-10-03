@@ -3,7 +3,7 @@ import {
   KITCHEN_ID_KEY,
   KITCHEN_ID_KEY_EQUALS,
   LOCATION_TYPE_KEY,
-} from "app/hooks/useNavigator";
+} from "app/components/PageHeader/hooks/useNavigator";
 import { Buffer } from "buffer";
 import { rolesWithAllAccess, routeConfig } from "config/route";
 import React from "react";

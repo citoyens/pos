@@ -1,6 +1,6 @@
-import { useAllCities } from "app/hooks/useAllCities";
-import { useAllKitchens } from "app/hooks/useAllKitchens";
-import { useAllCountries } from "app/hooks/useAllCountries";
+import { useAllCities } from "app/components/PageHeader/hooks/useAllCities";
+import { useAllKitchens } from "app/components/PageHeader/hooks/useAllKitchens";
+import { useAllCountries } from "app/components/PageHeader/hooks/useAllCountries";
 import {
   KitchenType,
   KOSCity,

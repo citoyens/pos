@@ -9,6 +9,7 @@ export enum LocalStorageItemExtra {
   selectedStore = "selectedStore",
   selectedKitchen = "selectedKitchen",
   selectedTable = "selectedTable",
+  activeOrders = "activeOrders",
 }
 
 export type LocalStorageItem = `${

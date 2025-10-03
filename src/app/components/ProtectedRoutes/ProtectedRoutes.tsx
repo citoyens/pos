@@ -1,6 +1,6 @@
-import { useAppDispatch } from "app/hooks/useAppDispatch";
-import { useAppSelector } from "app/hooks/useAppSelector";
-import { useNavigator } from "app/hooks/useNavigator";
+import { useAppDispatch } from "app/components/PageHeader/hooks/useAppDispatch";
+import { useAppSelector } from "app/components/PageHeader/hooks/useAppSelector";
+import { useNavigator } from "app/components/PageHeader/hooks/useNavigator";
 import { commons } from "app/i18n/types";
 import { getSession, getUser } from "app/store/slices/session/thunks";
 import { t } from "i18next";

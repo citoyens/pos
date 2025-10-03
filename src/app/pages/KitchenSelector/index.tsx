@@ -1,7 +1,8 @@
+// components/KitchenSelector/index.tsx - ACTUALIZACIÓN
 import { FunctionComponent, useEffect, useMemo, useState } from "react";
-import { useAllKitchens } from "app/hooks/useAllKitchens";
-import { useAllStore } from "app/hooks/useAllStore";
-import { useAllBrands } from "app/hooks/useAllBrands";
+import { useAllKitchens } from "app/components/PageHeader/hooks/useAllKitchens";
+import { useAllStore } from "app/components/PageHeader/hooks/useAllStore";
+import { useAllBrands } from "app/components/PageHeader/hooks/useAllBrands";
 import {
   setLocalStorage,
   getLocalStorageJSON,
@@ -12,13 +13,15 @@ import { Store } from "core/stores/entities/Store";
 import { Brand } from "core/brands/entities/Brand";
 import { KitchenList } from "./KitchenList";
 import { BrandSelector } from "./BrandSelector";
+import MenuView from "app/components/MenuView";
 import TableSelector from "../TableSelector";
 
 interface StoreWithBrand extends Store {
   fullBrand?: Brand;
 }
 
-type ViewType = "kitchens" | "brands" | "tables";
+// CAMBIO: Agregar "menu" al tipo ViewType
+type ViewType = "kitchens" | "brands" | "tables" | "menu";
 
 const KitchenSelector: FunctionComponent = () => {
   const { list: kitchens } = useAllKitchens();
@@ -190,6 +193,16 @@ const KitchenSelector: FunctionComponent = () => {
     setCurrentView("brands");
   };
 
+  // NUEVO: Handler para volver del menú a las mesas
+  const handleBackFromMenu = () => {
+    setCurrentView("tables");
+  };
+
+  // NUEVO: Handler para cuando se selecciona una mesa
+  const handleTableSelected = () => {
+    setCurrentView("menu");
+  };
+
   if (!kitchens.length) {
     return (
       <Box sx={{ p: 3 }}>
@@ -200,8 +213,30 @@ const KitchenSelector: FunctionComponent = () => {
     );
   }
 
+  // NUEVO: Renderizar MenuView cuando currentView === "menu"
+  if (currentView === "menu") {
+    return (
+      <Box
+        id="menu-scroll"
+        sx={{
+          height: "100vh",
+          overflowY: "auto",
+          overflowX: "hidden",
+        }}
+      >
+        <MenuView onBack={handleBackFromMenu} />
+      </Box>
+    );
+  }
+
   if (currentView === "tables") {
-    return <TableSelector onBack={handleBackFromTables} />;
+    // CAMBIO: Pasar onTableSelected al TableSelector
+    return (
+      <TableSelector
+        onBack={handleBackFromTables}
+        onTableSelected={handleTableSelected}
+      />
+    );
   }
 
   if (currentView === "brands") {

@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { useNavigator } from "app/hooks/useNavigator";
+import { useNavigator } from "app/components/PageHeader/hooks/useNavigator";
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import { getModuleIcon } from "utils/module";

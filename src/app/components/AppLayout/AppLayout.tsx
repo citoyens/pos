@@ -1,9 +1,9 @@
 import { KOSMenu } from "@foodology-co/alejandria";
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
 import Box from "@mui/material/Box";
-import { useAppDispatch } from "app/hooks/useAppDispatch";
-import { useAppSelector } from "app/hooks/useAppSelector";
-import { useNavigator } from "app/hooks/useNavigator";
+import { useAppDispatch } from "app/components/PageHeader/hooks/useAppDispatch";
+import { useAppSelector } from "app/components/PageHeader/hooks/useAppSelector";
+import { useNavigator } from "app/components/PageHeader/hooks/useNavigator";
 import { hideAlert } from "app/store/slices/global";
 import { getUserMenu } from "app/store/slices/menu/thunks";
 import appConfig from "config/app";
@@ -11,13 +11,13 @@ import { FunctionComponent, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useMount } from "react-use";
 import TopBar from "../TopBar";
-import { useAllCountries } from "app/hooks/useAllCountries";
-import { useAllKitchens } from "app/hooks/useAllKitchens";
-import { useAllCities } from "app/hooks/useAllCities";
+import { useAllCountries } from "app/components/PageHeader/hooks/useAllCountries";
+import { useAllKitchens } from "app/components/PageHeader/hooks/useAllKitchens";
+import { useAllCities } from "app/components/PageHeader/hooks/useAllCities";
 import { useTranslation } from "react-i18next";
 import textToSpeech from "utils/textToSpeech";
-import { useCompany } from "app/hooks/useCompany";
-import { useAllBrands } from "app/hooks/useAllBrands";
+import { useCompany } from "app/components/PageHeader/hooks/useCompany";
+import { useAllBrands } from "app/components/PageHeader/hooks/useAllBrands";
 
 interface AppLayoutProps {}
 

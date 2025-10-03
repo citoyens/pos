@@ -1,5 +1,5 @@
-import { useAppDispatch } from "app/hooks/useAppDispatch";
-import { useAppSelector } from "app/hooks/useAppSelector";
+import { useAppDispatch } from "app/components/PageHeader/hooks/useAppDispatch";
+import { useAppSelector } from "app/components/PageHeader/hooks/useAppSelector";
 import {
   clearSearchOnTopBar,
   hideSearchOnTopBar,

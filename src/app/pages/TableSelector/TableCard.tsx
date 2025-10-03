@@ -1,104 +1,80 @@
-import { FunctionComponent } from "react";
+import React from "react";
+import { Card, CardContent, Typography, Stack, Box, Chip } from "@mui/material";
 import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-  Chip,
-  Box,
-} from "@mui/material";
+  TableRestaurant as TableIcon,
+  People as PeopleIcon,
+} from "@mui/icons-material";
 import { Table, Status } from "core/tables/entities/Table";
-import PeopleIcon from "@mui/icons-material/People";
 
 interface TableCardProps {
   table: Table;
   onSelect: (table: Table) => void;
-  disabled?: boolean;
 }
 
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case Status.VACANT:
-      return "success";
-    case Status.IN_USE:
-      return "error";
-    case Status.RESERVED:
-      return "warning";
-    case Status.INACTIVE:
-      return "default";
-    default:
-      return "default";
-  }
+const statusConfig = {
+  [Status.VACANT]: {
+    label: "Disponible",
+    color: "success" as const,
+  },
+  [Status.IN_USE]: {
+    label: "En uso",
+    color: "error" as const,
+  },
+  [Status.RESERVED]: {
+    label: "Reservada",
+    color: "warning" as const,
+  },
+  [Status.INACTIVE]: {
+    label: "Inactiva",
+    color: "default" as const,
+  },
 };
 
-const getStatusLabel = (status: string) => {
-  switch (status) {
-    case Status.VACANT:
-      return "Disponible";
-    case Status.IN_USE:
-      return "En uso";
-    case Status.RESERVED:
-      return "Reservada";
-    case Status.INACTIVE:
-      return "Inactiva";
-    default:
-      return status;
-  }
-};
-
-export const TableCard: FunctionComponent<TableCardProps> = ({
-  table,
-  onSelect,
-  disabled = false,
-}) => {
-  const isAvailable = table.status === Status.VACANT;
+export const TableCard: React.FC<TableCardProps> = ({ table, onSelect }) => {
+  const config = statusConfig[table.status as Status];
 
   return (
     <Card
       sx={{
-        boxShadow: 1,
-        transition: "0.2s",
-        opacity: disabled || !isAvailable ? 0.6 : 1,
+        cursor: "pointer",
+        transition: "all 0.2s ease-in-out",
+        height: "100%",
         "&:hover": {
-          boxShadow: disabled || !isAvailable ? 1 : 3,
+          transform: "translateY(-4px)",
+          boxShadow: 3,
         },
       }}
+      onClick={() => onSelect(table)}
     >
-      <CardActionArea
-        onClick={() => !disabled && isAvailable && onSelect(table)}
-        disabled={disabled || !isAvailable}
-      >
-        <CardContent>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              mb: 1,
-            }}
+      <CardContent>
+        <Stack spacing={2}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            <Typography variant="h6" fontWeight={600}>
-              {table.name}
-            </Typography>
-            <Chip
-              label={getStatusLabel(table.status)}
-              color={getStatusColor(table.status)}
-              size="small"
-            />
-          </Box>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <TableIcon color="primary" />
+              <Typography variant="h6" fontWeight={600}>
+                {table.name}
+              </Typography>
+            </Stack>
+            <Chip label={config.label} color={config.color} size="small" />
+          </Stack>
 
-          <Typography variant="body2" color="text.secondary" gutterBottom>
-            Piso: {table.floor}
-          </Typography>
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-            <PeopleIcon fontSize="small" color="action" />
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Stack direction="row" spacing={0.5} alignItems="center">
+              <PeopleIcon fontSize="small" color="action" />
+              <Typography variant="body2" color="text.secondary">
+                {table.capacity}
+              </Typography>
+            </Stack>
             <Typography variant="body2" color="text.secondary">
-              Capacidad: {table.capacity}
+              Piso {table.floor}
             </Typography>
-          </Box>
-        </CardContent>
-      </CardActionArea>
+          </Stack>
+        </Stack>
+      </CardContent>
     </Card>
   );
 };

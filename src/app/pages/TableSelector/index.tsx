@@ -13,22 +13,29 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useAllTables } from "app/hooks/useAllTables";
 import { TableCard } from "./TableCard";
+import { TableModal } from "./TableModal";
 import { Table, Status } from "core/tables/entities/Table";
 import {
   setLocalStorage,
   getLocalStorageJSON,
   LocalStorageItem,
 } from "utils/localStorage";
+import { useAllTables } from "app/components/PageHeader/hooks/useAllTables";
 
 interface TableSelectorProps {
   onBack: () => void;
+  onTableSelected?: () => void;
 }
 
-const TableSelector: FunctionComponent<TableSelectorProps> = ({ onBack }) => {
-  const { getTables, tables, loading } = useAllTables();
+export const TableSelector: FunctionComponent<TableSelectorProps> = ({
+  onBack,
+  onTableSelected,
+}) => {
+  const { getTables, tables, loading, updateStatus } = useAllTables();
   const [selectedFloor, setSelectedFloor] = useState<string>("all");
+  const [selectedTable, setSelectedTable] = useState<Table | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const storedKitchen = getLocalStorageJSON(
@@ -48,17 +55,40 @@ const TableSelector: FunctionComponent<TableSelectorProps> = ({ onBack }) => {
   }, [tables]);
 
   const filteredTables = useMemo(() => {
-    if (selectedFloor === "all") return tables;
-    return tables.filter((t) => t.floor === selectedFloor);
+    const activeTables = tables.filter((t) => t.status !== Status.INACTIVE);
+    if (selectedFloor === "all") return activeTables;
+    return activeTables.filter((t) => t.floor === selectedFloor);
   }, [tables, selectedFloor]);
 
   const availableCount = useMemo(() => {
     return filteredTables.filter((t) => t.status === Status.VACANT).length;
   }, [filteredTables]);
 
-  const handleSelectTable = (table: Table) => {
+  const handleTableClick = (table: Table) => {
+    setSelectedTable(table);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedTable(null);
+  };
+
+  const handleTakeOrder = (table: Table) => {
     setLocalStorage("selectedTable" as LocalStorageItem, table);
-    window.location.reload();
+    handleCloseModal();
+    if (onTableSelected) {
+      onTableSelected();
+    }
+  };
+
+  const handleViewOrder = (table: Table) => {
+    console.log("Ver orden de mesa:", table);
+    handleCloseModal();
+  };
+
+  const handleCloseOrder = async (table: Table) => {
+    console.log("Cerrar orden de mesa:", table);
   };
 
   const handleFloorChange = (event: SelectChangeEvent) => {
@@ -105,7 +135,7 @@ const TableSelector: FunctionComponent<TableSelectorProps> = ({ onBack }) => {
         <Grid container spacing={2}>
           {filteredTables.map((table) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={table.id}>
-              <TableCard table={table} onSelect={handleSelectTable} />
+              <TableCard table={table} onSelect={handleTableClick} />
             </Grid>
           ))}
         </Grid>
@@ -113,9 +143,19 @@ const TableSelector: FunctionComponent<TableSelectorProps> = ({ onBack }) => {
 
       {filteredTables.length === 0 && !loading && (
         <Typography variant="body2" color="text.secondary" align="center">
-          No hay mesas disponibles
+          No hay mesas activas disponibles
         </Typography>
       )}
+
+      <TableModal
+        open={modalOpen}
+        table={selectedTable}
+        onClose={handleCloseModal}
+        onTakeOrder={handleTakeOrder}
+        onViewOrder={handleViewOrder}
+        onCloseOrder={handleCloseOrder}
+        onChangeStatus={updateStatus}
+      />
     </Box>
   );
 };

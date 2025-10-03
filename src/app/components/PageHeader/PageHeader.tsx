@@ -1,7 +1,7 @@
 import { KOSPageHeader, KOSPageHeaderButton } from "@foodology-co/alejandria";
-import { useAppDispatch } from "app/hooks/useAppDispatch";
-import { useAppSelector } from "app/hooks/useAppSelector";
-import { useNavigator } from "app/hooks/useNavigator";
+import { useAppDispatch } from "app/components/PageHeader/hooks/useAppDispatch";
+import { useAppSelector } from "app/components/PageHeader/hooks/useAppSelector";
+import { useNavigator } from "app/components/PageHeader/hooks/useNavigator";
 import { clearTitle, setTitle } from "app/store/slices/global";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";

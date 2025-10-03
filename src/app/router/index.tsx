@@ -1,7 +1,7 @@
 import { KOSEnvironment, KOSFavIcon } from "@foodology-co/alejandria";
 import AppLayout from "app/components/AppLayout";
 import ProtectedRoutes from "app/components/ProtectedRoutes/ProtectedRoutes";
-import { useAppSelector } from "app/hooks/useAppSelector";
+import { useAppSelector } from "app/components/PageHeader/hooks/useAppSelector";
 import ErrorPage from "app/pages/Error";
 import LoadingPage from "app/pages/Loading";
 import appConfig from "config/app";
